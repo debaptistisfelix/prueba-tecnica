@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba Indigitall</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+<script >
+  function onNewUserRegistered(device){
+    console.log("Device onNewUserRegistered: ",device)
+  }
+
+  function onIndigitallInitialized(permissions,device){
+    console.log("Push Permission: ",permissions.push)
+    console.log("Location Permission: ",permissions.location)
+    console.log("Device: ", device)
+  }
+
+  function onLocationUpdated(location){}
+
+  function onError(error){
+    console.log(error);
+  }
+
+  function requestPushPermission(permission){}
+
+  function requestLocationPermission(permission){}
+
+  function onIndigitallLoaded(){
+    
+    indigitall.init({
+      appKey:'94cb9c3e-0749-450f-8445-49bf2b269d8a',
+      workerPath:'./indigitall/worker.min.js',
+      requestLocation: true,
+      onInitialized: onIndigitallInitialized,
+      requestPushPermission: requestPushPermission,
+      onNewUserRegistered: onNewUserRegistered,
+      requestLocationPermission: requestLocationPermission,
+      onLocationUpdated: onLocationUpdated,
+      onError: onError            
+    });
+  }
+</script>
+
+<script src="./indigitall/sdk.min.js" onload="onIndigitallLoaded()" ></script>
+  </body>
+</html>
